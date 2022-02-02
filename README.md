@@ -13,7 +13,7 @@
 
 
 # Features :
-- E.C.S. > Entity Component System Game Engine
+- E.C.S. > Entity Component System Game Engine [Yoiked Random ideas from DivotKey](https://github.com/divotkey/ecs)
 - Multi threaded [Greedy Meshing](https://0fps.net/2012/06/30/meshing-in-a-minecraft-game/) of 16x16x16 chunk data
 - Data compression in mesh VBO's [the idea giver guy](https://www.youtube.com/watch?v=VQuN1RMEr1c)
 - Per Block type Textures (from Minecraft Game) [minecraft.net (dont sue me plx its an old asset) ](https://www.minecraft.net)
@@ -28,6 +28,6 @@ Its an Eclipse project.
    - drag n drop slick-utils3 and command-lang3 into "lib/" folder or adjust path urself.
 
 # Dependencies 
-- Commons-lang3 (3.12.0 used)
-- slick-util3 (used the fork floating around)
-- LWJGL3
+- Commons-lang3 [3.12.0 used](https://commons.apache.org/proper/commons-lang/)
+- slick-util3 [used the fork floating around](http://forum.lwjgl.org/index.php?topic=5799.0)
+- [LWJGL3](https://www.lwjgl.org)
