@@ -38,3 +38,15 @@ Its an Eclipse project.
 - Commons-lang3 [3.12.0 used](https://commons.apache.org/proper/commons-lang/)
 - slick-util3 [used the fork floating around](http://forum.lwjgl.org/index.php?topic=5799.0)
 - [LWJGL3](https://www.lwjgl.org)
+
+
+# Note 
+I am not working on this anymore, wont be. It's a garbage way of doing things IMO.
+Flaws : 
+- "slow"
+- - too many meshes
+- - too many single blocks in memory, generalize the voxel data and not just the mesh, especially air....
+- - greedy meshing.... slow. Sorry, I said it. Still might use it unless I get smarter.
+- - OpenGL (depr. macOs)
+- ugly texture repeat because no softening on atlas mapping
+- Didn't follow ECS all the way through and made objects.
