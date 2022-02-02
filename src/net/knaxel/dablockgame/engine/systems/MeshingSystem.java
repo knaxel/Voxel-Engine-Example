@@ -110,6 +110,10 @@ public class MeshingSystem extends EngineSystem implements Runnable{
 
 		
 		int[] dims = { Chunk.CHUNK_SIZE, Chunk.CHUNK_SIZE, Chunk.CHUNK_SIZE };
+		
+		// derivation from : 
+		// https://gist.github.com/Vercidium/a3002bd083cce2bc854c9ff8f0118d33
+		
 		// Cache buffer internally
 		BlockFace v1, v2;
 		BlockFace[] mask;
