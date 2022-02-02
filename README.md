@@ -27,6 +27,13 @@ Its an Eclipse project.
    - Setup LWJGL3 paths in a library by replacing the LWJGL3 if its missing
    - drag n drop slick-utils3 and command-lang3 into "lib/" folder or adjust path urself.
 
+# Controls
+- w          -> move fowards
+- s          -> move backwards
+- left_shift -> speed up
+- e          -> toggle wireframe mesh
+- escape     -> close
+
 # Dependencies 
 - Commons-lang3 [3.12.0 used](https://commons.apache.org/proper/commons-lang/)
 - slick-util3 [used the fork floating around](http://forum.lwjgl.org/index.php?topic=5799.0)
