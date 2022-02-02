@@ -1,13 +1,15 @@
 # Voxel Chunk Greedy Meshing Example with ECS
-
-<a href="https://github.com/knaxel/Voxel-Chunk-Greedy-Meshing-Example-with-ECS/blob/main/git/1.png"><img src="https://github.com/knaxel/Voxel-Chunk-Greedy-Meshing-Example-with-ECS/blob/main/git/1.png" align="middle" width="400" ></a>
+<div  align="center" >
+<a href="https://github.com/knaxel/Voxel-Chunk-Greedy-Meshing-Example-with-ECS/blob/main/git/1.png"><img src="https://github.com/knaxel/Voxel-Chunk-Greedy-Meshing-Example-with-ECS/blob/main/git/1.png" width="400" ></a>
+  </div>
   
+<div  align="center" >
 <a href="https://github.com/knaxel/Voxel-Chunk-Greedy-Meshing-Example-with-ECS/blob/main/git/2.png">
   <img src="https://github.com/knaxel/Voxel-Chunk-Greedy-Meshing-Example-with-ECS/blob/main/git/2.png"  width="320" ></a>
 
 <a href="https://github.com/knaxel/Voxel-Chunk-Greedy-Meshing-Example-with-ECS/blob/main/git/3.png">
   <img src="https://github.com/knaxel/Voxel-Chunk-Greedy-Meshing-Example-with-ECS/blob/main/git/3.png"  width="320" ></a>
-
+  </div>
 
 
 # Features :
