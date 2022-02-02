@@ -14,9 +14,9 @@
 
 # Features :
 - E.C.S. > Entity Component System Game Engine
-- Multi threaded meshing of 16x16x16 chunk data
-- Data compression in mesh VBO's 
-- Textures (from Minecraft Game)
+- Multi threaded [Greedy Meshing](https://0fps.net/2012/06/30/meshing-in-a-minecraft-game/) of 16x16x16 chunk data
+- Data compression in mesh VBO's [the idea giver guy](https://www.youtube.com/watch?v=VQuN1RMEr1c)
+- Per Block type Textures (from Minecraft Game) [minecraft.net (dont sue me plx its an old asset) ](https://www.minecraft.net)
 
 # Usage 
 Its an Eclipse project.
