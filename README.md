@@ -1,4 +1,7 @@
 # Voxel Chunk Greedy Meshing Example with ECS
+
+example is 6x6x6 chunks that are 16x16x16 voxels (mesh is aware of other chunks): 
+
 <div  align="center" >
 <a href="https://github.com/knaxel/Voxel-Chunk-Greedy-Meshing-Example-with-ECS/blob/main/git/1.png"><img src="https://github.com/knaxel/Voxel-Chunk-Greedy-Meshing-Example-with-ECS/blob/main/git/1.png" width="400" ></a>
   </div>
