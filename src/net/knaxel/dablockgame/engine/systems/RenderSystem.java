@@ -61,7 +61,7 @@ public class RenderSystem extends EngineSystem{
 		shader.start();
 		shader.loadViewMatrix(current_camera);
 		shader.sunColor(new Vector3(1, 1, .8f));
-		shader.sunPosition(engine.getPlayer().getPosition());
+		shader.sunPosition(new Vector3(1000, 1000, 1000f));
 		
 		if(wireframe) {
 			for (Mesh mesh : meshes.values()) {

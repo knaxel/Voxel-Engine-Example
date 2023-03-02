@@ -55,20 +55,15 @@ public class MeshingSystem extends EngineSystem implements Runnable{
 	}
 	public void tick(double dt) {
 
-		if (hasJob() && ( greedyThreads.size() < 4)) {
+		if(hasJob() ) {
+			for(short  i = 0 ; i < greedyThreads.size() ; i ++) {
+				if(!greedyThreads.get(i).isAlive()) {
+					greedyThreads.remove(i);
+				}
+			}
 			Thread t = new Thread(this);
 			greedyThreads.add(greedyThreads.size(), t);
 			t.start();
-		}else if(hasJob()) {
-			int i =0;
-			for(Thread t : greedyThreads) {
-				if(!t.isAlive()) {
-					t = new Thread(this);
-					greedyThreads.set(i, t);
-					t.start();
-					i++;
-				}
-			}
 		}
 	}
 
@@ -137,8 +132,8 @@ public class MeshingSystem extends EngineSystem implements Runnable{
 				for (x[d] = -1; x[d] < dims[d];) {
 					// Compute mask
 					int n = 0;
-					for (x[v] = 0; x[v] < dims[v]; ++x[v])
-						for (x[u] = 0; x[u] < dims[u]; ++x[u]) {
+					for (x[v] = 0; x[v] < dims[v]; x[v]++)
+						for (x[u] = 0; x[u] < dims[u]; x[u]++) {
 
 							v1 = world_ref.f(x[0] + (chunk_loc.x * Chunk.CHUNK_SIZE),
 									x[1] +  Chunk.CHUNK_SIZE * layer,
@@ -157,7 +152,7 @@ public class MeshingSystem extends EngineSystem implements Runnable{
 					++x[d];
 					// Generate mesh for mask using lexicographic ordering
 					n = 0;
-					for (j = 0; j < dims[v]; ++j)
+					for (j = 0; j < dims[v]; j++)
 						for (i = 0; i < dims[u];) {
 
 							if (mask[n] != null && mask[n].type != BlockType.AIR) {
@@ -167,8 +162,8 @@ public class MeshingSystem extends EngineSystem implements Runnable{
 								}
 								// Compute height (this is slightly awkward
 								boolean done = false;
-								for (h = 1; j + h < dims[v]; ++h) {
-									for (k = 0; k < w; ++k) {
+								for (h = 1; j + h < dims[v]; h++) {
+									for (k = 0; k < w; k++) {
 										if (mask[n + k + h * dims[u]] == null
 												|| mask[n + k + h * dims[u]].type != mask[n].type) {
 											done = true;
@@ -196,18 +191,31 @@ public class MeshingSystem extends EngineSystem implements Runnable{
 								// attrib 2:
 								// uv r     g     b   dmg 
 								// 00 0000 0000 0000 0000 00000 0000 00000
+//                              sides
+//								private static final int SOUTH = 0;
+//								private static final int NORTH = 1;
+//								private static final int EAST = 2;
+//								private static final int WEST = 3;
+//								private static final int UP = 4;
+//								private static final int DOWN = 5;
+								int norm = (side==DOWN ? 0 : (side==UP) ? 2 : 1 ) << 26 | 
+										   (side==SOUTH  ? 0 : (side==NORTH) ? 2 : 1 ) << 22 | 
+										   (side==WEST ? 0 : (side==EAST) ? 2 : 1 ) << 18;
+								
 								int attrib_1_1 = (x[0] << 27) | (x[1] << 22) | (x[2] << 17) | (textureID << 1) | (d == 0 ? (h - 1 << 13) | (w - 1 << 9) : (w - 1 << 13) | (h - 1 << 9));
-								int attrib_2_1 = (d==1 ? 0 : 1) << 30 | 15 << 26 | 15 << 22 | 15 << 18;
+								//int attrib_2_1 = (d==1 ? 0 : 1) << 30 | 15 << 26 | 15 << 22 | 15 << 18;
+								int attrib_2_1 = (d==1 ? 0 : 1) << 30 | norm;
 								
 								int attrib_1_2 = ((x[0]+ du[0]) << 27) | ((x[1] + du[1])<< 22) | ((x[2]+ du[2] )<< 17) | (textureID << 1) | (d == 0 ? (h - 1 << 13) | (w - 1 << 9) : (w - 1 << 13) | (h - 1 << 9));
-								int attrib_2_2 = (d==1 ? 3 : (d==0) ? 0 : 2 ) << 30 | 15 << 26 | 15 << 22 | 15 << 18;
-
+								int attrib_2_2 = (d==1 ? 3 : (d==0) ? 0 : 2 ) << 30 | norm;
+								//int attrib_2_2 = (d==1 ? 3 : (d==0) ? 0 : 2 ) << 30 | 15 << 26 | 15 << 22 | 15 << 18;
 
 								int attrib_1_3 = ((x[0]+ du[0]+ dv[0]) << 27) | ((x[1] + du[1]+ dv[1])<< 22) | ((x[2]+ du[2]+ dv[2] )<< 17) | (textureID << 1) | (d == 0 ? (h - 1 << 13) | (w - 1 << 9) : (w - 1 << 13) | (h - 1 << 9));
-								int attrib_2_3 = (d==1 ? 2 : 3) << 30 | 15 << 26 | 15 << 22 | 15 << 18;
+								int attrib_2_3 = (d==1 ? 2 : 3) << 30 | norm;
+								//int attrib_2_3 = (d==1 ? 2 : 3) << 30 | 15 << 26 | 15 << 22 | 15 << 18;
 								
 								int attrib_1_4 = ((x[0]+ dv[0] )<< 27) | ((x[1] + dv[1])<< 22) | ((x[2]+  dv[2]) << 17) | (textureID << 1) | (d == 0 ? (h - 1 << 13) | (w - 1 << 9) : (w - 1 << 13) | (h - 1 << 9));
-								int attrib_2_4 = (d==1 ? 1 : (d==0) ? 2 : 0) << 30 | 15 << 26 | 15 << 22 | 15 << 18;
+								int attrib_2_4 = (d==1 ? 1 : (d==0 ) ? 2 : 0) << 30 | norm;
 								
 								attrib1 = ArrayUtils.addAll(attrib1,  new int[] {attrib_1_1,attrib_1_2,attrib_1_3,attrib_1_4});
 								attrib2 = ArrayUtils.addAll(attrib2, new int[] {attrib_2_1,attrib_2_2,attrib_2_3,attrib_2_4});

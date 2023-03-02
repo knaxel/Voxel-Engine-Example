@@ -11,6 +11,7 @@ import net.knaxel.dablockgame.engine.Engine;
 import net.knaxel.dablockgame.engine.input.KeyBoard;
 import net.knaxel.dablockgame.engine.input.Mouse;
 import net.knaxel.dablockgame.engine.utils.vector.Vector3;
+import net.knaxel.dablockgame.engine.utils.vector.Vector4i;
 import net.knaxel.dablockgame.entity.Entity;
 import net.knaxel.dablockgame.entity.components.Location;
 import net.knaxel.dablockgame.entity.components.Velocity;
@@ -19,6 +20,8 @@ import net.knaxel.dablockgame.event.KeyPressEvent;
 import net.knaxel.dablockgame.event.KeyReleaseEvent;
 import net.knaxel.dablockgame.event.Listener;
 import net.knaxel.dablockgame.event.MouseMoveEvent;
+import net.knaxel.dablockgame.world.Chunk;
+import net.knaxel.dablockgame.world.World;
 
 public class ControllerSystem extends EngineSystem implements Listener{
 	
@@ -89,6 +92,41 @@ public class ControllerSystem extends EngineSystem implements Listener{
 				v.set(-d.x*a, -d.y*a,-d.z*a);
 			}
 
+		}else if(pressed[GLFW.GLFW_KEY_F]) {
+	
+			World world = this.engine.getWorld();
+			float i = 0;
+			boolean broke = false;
+			int x = 0,y=0,z=0;
+			while ( !broke &&  i < 10) {
+				Vector3 l = Vector3.getVectorFromRotation(loc.getDirection());
+				x = (int) (loc.getPosition().x + l.x * i);
+				y = (int) (loc.getPosition().y + l.y * i);
+				z = (int) (loc.getPosition().z + l.z * i);
+				broke = world.breakBlockAt(x,y,z) ;
+				i+=1;
+			}
+			int cx = (int)(x /Chunk.CHUNK_SIZE);
+			int cy = (int)(y /Chunk.CHUNK_SIZE);
+			int cz = (int)(z /Chunk.CHUNK_SIZE);
+			
+			this.engine.getSystem(MeshingSystem.class).addJob(new Vector4i(cx,cy,cz,0));
+			
+			if( (int)loc.getPosition().x% Chunk.CHUNK_SIZE == 0 ) {
+				this.engine.getSystem(MeshingSystem.class).addJob(new Vector4i(cx+1,cy,cz,0));
+				this.engine.getSystem(MeshingSystem.class).addJob(new Vector4i(cx-1,cy,cz,0));
+				
+			}
+			if((int)loc.getPosition().z% Chunk.CHUNK_SIZE == 0 ) {
+				this.engine.getSystem(MeshingSystem.class).addJob(new Vector4i(cx,cy,cz+1,0));
+				this.engine.getSystem(MeshingSystem.class).addJob(new Vector4i(cx,cy,cz-1,0));
+				
+			}
+			if ((int)loc.getPosition().y% Chunk.CHUNK_SIZE == 0 ) {
+				this.engine.getSystem(MeshingSystem.class).addJob(new Vector4i(cx,cy+1,cz,0));
+				this.engine.getSystem(MeshingSystem.class).addJob(new Vector4i(cx,cy-1,cz,0));
+				
+			}
 		}
 		if(pressed[GLFW.GLFW_KEY_SPACE]){
 			v.y = 1;
@@ -109,10 +147,10 @@ public class ControllerSystem extends EngineSystem implements Listener{
 		int key = e.getKey();
 		
 		pressed[key] = true;
-		
+
 		if(key == GLFW.GLFW_KEY_E) {
-			RenderSystem r = ((RenderSystem)this.engine.getSystem(RenderSystem.class));
-			r.toggleWireframe();
+			this.engine.getSystem(RenderSystem.class).toggleWireframe();
+		}else if(key == GLFW.GLFW_KEY_F) {
 		}
 		if(key == GLFW.GLFW_KEY_ESCAPE) {
 			this.engine.close();

@@ -1,3 +1,4 @@
-
+.settings/
 lib/
 bin/
+/target/
