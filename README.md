@@ -3,17 +3,16 @@
 example is 6x6x6 chunks that are 16x16x16 voxels (mesh is aware of other chunks): 
 
 <div  align="center" >
-<a href="https://github.com/knaxel/Voxel-Chunk-Greedy-Meshing-Example-with-ECS/blob/main/git/1.png"><img src="https://github.com/knaxel/Voxel-Chunk-Greedy-Meshing-Example-with-ECS/blob/main/git/1.png" width="400" ></a>
-  </div>
-  
-<div  align="center" >
+<a href="https://github.com/knaxel/Voxel-Chunk-Greedy-Meshing-Example-with-ECS/blob/main/git/1.png"><img src="https://github.com/knaxel/Voxel-Chunk-Greedy-Meshing-Example-with-ECS/blob/main/git/1.png" width="250" ></a>
+
 <a href="https://github.com/knaxel/Voxel-Chunk-Greedy-Meshing-Example-with-ECS/blob/main/git/2.png">
-  <img src="https://github.com/knaxel/Voxel-Chunk-Greedy-Meshing-Example-with-ECS/blob/main/git/2.png"  width="370" ></a>
+  <img src="https://github.com/knaxel/Voxel-Chunk-Greedy-Meshing-Example-with-ECS/blob/main/git/2.png"  width="250" ></a>
 
 <a href="https://github.com/knaxel/Voxel-Chunk-Greedy-Meshing-Example-with-ECS/blob/main/git/3.png">
-  <img src="https://github.com/knaxel/Voxel-Chunk-Greedy-Meshing-Example-with-ECS/blob/main/git/3.png"  width="370" ></a>
+  <img src="https://github.com/knaxel/Voxel-Chunk-Greedy-Meshing-Example-with-ECS/blob/main/git/3.png"  width="250" ></a>
   </div>
-
+  
+![test](https://github.com/knaxel/Voxel-Engine-Example/blob/main/gif.gif?raw=true=250x250)
 
 # Features :
 - E.C.S. > Entity Component System Game Engine [Yoiked Random ideas from DivotKey](https://github.com/divotkey/ecs)
